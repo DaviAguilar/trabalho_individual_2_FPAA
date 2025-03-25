@@ -40,13 +40,11 @@ def find_max_min(arr):
         return None, None, None
     max_val, min_val, G = maxmin_select(arr, 0, len(arr) - 1)
 
-    if not os.path.exists('assets'):
-        os.makedirs('assets')
 
     pos = nx.spring_layout(G, k=50)  # Ajusta o espaçamento dos nós
     labels = nx.get_node_attributes(G, 'label')
     nx.draw(G, pos, with_labels=True, labels=labels, node_size=2500, node_color='skyblue', font_size=8, font_color='black', font_weight='bold', edge_color='gray')
-    plt.savefig('assets/diagrama_maxmin.png')
+    plt.savefig('diagrama_maxmin.png')
     plt.close()
 
     return max_val, min_val
@@ -56,4 +54,4 @@ if __name__ == "__main__":
     maximum, minimum = find_max_min(arr)
     print(f"Array: {arr}")
     print(f"Max: {maximum}, Min: {minimum}")
-    print("Diagrama gerado em 'assets/diagrama_maxmin.png'")
+    print("Diagrama gerado em '/diagrama_maxmin.png'")
