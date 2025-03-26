@@ -1,0 +1,73 @@
+@startuml
+skinparam monochrome true
+skinparam backgroundColor white
+skinparam shadowing false
+skinparam nodeSep 50
+skinparam rankSep 60
+
+!define RECTANGLE class
+
+' Nível 0: Lista completa
+RECTANGLE "Level 0\n[258, 2, 67, 52, 1, 102, 305, 48]\nMax=305, Min=1\n2 comp" as Root
+
+' Nível 1: Divisão em duas partes
+RECTANGLE "Level 1\n[258, 2, 67, 52]\nMax=258, Min=2\n2 comp" as Left1
+RECTANGLE "Level 1\n[1, 102, 305, 48]\nMax=305, Min=1\n2 comp" as Right1
+
+' Nível 2: Subdivisão
+RECTANGLE "Level 2\n[258, 2]\nMax=258, Min=2\n1 comp" as Left2_1
+RECTANGLE "Level 2\n[67, 52]\nMax=67, Min=52\n1 comp" as Left2_2
+RECTANGLE "Level 2\n[1, 102]\nMax=102, Min=1\n1 comp" as Right2_1
+RECTANGLE "Level 2\n[305, 48]\nMax=305, Min=48\n1 comp" as Right2_2
+
+' Conexões representando a divisão
+Root --> Left1 : "Divide"
+Root --> Right1 : "Divide"
+Left1 --> Left2_1 : "Divide"
+Left1 --> Left2_2 : "Divide"
+Right1 --> Right2_1 : "Divide"
+Right1 --> Right2_2 : "Divide"
+
+' Notas explicando a combinação e comparações
+note right of Root
+  Combinação:
+  Max(258, 305) = 305
+  Min(2, 1) = 1
+  2 comparações
+end note
+
+note right of Left1
+  Combinação:
+  Max(258, 67) = 258
+  Min(2, 52) = 2
+  2 comparações
+end note
+
+note right of Right1
+  Combinação:
+  Max(102, 305) = 305
+  Min(1, 48) = 1
+  2 comparações
+end note
+
+note right of Left2_1
+  Caso base:
+  1 comparação
+end note
+
+note right of Left2_2
+  Caso base:
+  1 comparação
+end note
+
+note right of Right2_1
+  Caso base:
+  1 comparação
+end note
+
+note right of Right2_2
+  Caso base:
+  1 comparação
+end note
+
+@enduml

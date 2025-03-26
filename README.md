@@ -35,32 +35,36 @@ Aqui está a explicação detalhada do código, organizada em seções expansív
 - <b>Linha 9</b>: Gera um ID único (<b>`node_id`</b>) usando <b>`low`</b> e <b>`high`</b>.  
 - <b>Linha 10</b>: Cria o <i>rótulo inicial</i> do nó com o subarray e o nível.  
 - <b>Linha 11</b>: Adiciona o nó ao grafo com o rótulo inicial.  
-- <b>Linhas 13-14</b>: Conecta o nó atual ao <b>`parent`</b> com uma <i>aresta</i>, estruturando a árvore.
+- <b>Linhas 13-14</b>: Conecta o nó atual ao <b>`parent`</b> com uma <i>aresta</i>, estruturando a árvore.  
+- <b>Linha 16</b>: Imprime o nível de recursão atual e o subarray sendo processado, ajudando na depuração.
 
 #### Casos Base
-- <b>Linhas 16-18 (Caso Base 1)</b>: Se <b>`low == high`</b> (um elemento):  
+- <b>Linhas 18-21 (Caso Base 1)</b>: Se <b>`low == high`</b> (um elemento):  
   - Atualiza o rótulo com o valor como <i>máximo</i> e <i>mínimo</i>.  
+  - Imprime uma mensagem indicando o caso base com um elemento.  
   - Retorna esses valores e o grafo.  
-- <b>Linhas 20-25 (Caso Base 2)</b>: Se <b>`high == low + 1`</b> (dois elementos):  
+- <b>Linhas 23-29 (Caso Base 2)</b>: Se <b>`high == low + 1`</b> (dois elementos):  
   - Compara <b>`arr[low]`</b> e <b>`arr[high]`</b>:  
     - Se <b>`arr[low] > arr[high]`</b>, <b>`max_val = arr[low]`</b> e <b>`min_val = arr[high]`</b>, senão o inverso.  
   - Atualiza o rótulo com <i>máximo</i>, <i>mínimo</i> e <b>1 comparação</b> (<i>`1 comp`</i>).  
+  - Imprime uma mensagem com os dois elementos, o máximo e o mínimo calculados.  
   - Retorna os valores e o grafo.
 
 #### Divisão e Conquista
-- <b>Linha 27</b>: Calcula o <i>ponto médio</i> (<b>`mid`</b>) para dividir o array.  
-- <b>Linhas 28-29</b>: Executa chamadas <i>recursivas</i> de <b>`maxmin_select`</b>:  
+- <b>Linha 31</b>: Calcula o <i>ponto médio</i> (<b>`mid`</b>) para dividir o array.  
+- <b>Linhas 32-33</b>: Executa chamadas <i>recursivas</i> de <b>`maxmin_select`</b>:  
   - Metade esquerda: <b>`low`</b> a <b>`mid`</b>.  
   - Metade direita: <b>`mid + 1`</b> a <b>`high`</b>.  
   - Passa o nó atual como <b>`parent`</b> e incrementa o <b>`level`</b>.
 
 #### Combinação
-- <b>Linhas 31-32</b>: Combina os resultados:  
+- <b>Linhas 35-36</b>: Combina os resultados:  
   - <i>Máximo final</i>: <b>`max(max1, max2)`</b>.  
   - <i>Mínimo final</i>: <b>`min(min1, min2)`</b>.  
   - Realiza <b>2 comparações</b>.  
-- <b>Linha 33</b>: Atualiza o rótulo com o subarray, <i>máximo</i>, <i>mínimo</i> e <b>2 comp</b>.  
-- <b>Linha 35</b>: Retorna <i>máximo</i>, <i>mínimo</i> e o grafo.
+- <b>Linha 37</b>: Atualiza o rótulo com o subarray, <i>máximo</i>, <i>mínimo</i> e <b>2 comp</b>.  
+- <b>Linha 39</b>: Imprime o nível de recursão, o subarray combinado, o máximo e o mínimo calculados.  
+- <b>Linha 41</b>: Retorna <i>máximo</i>, <i>mínimo</i> e o grafo.
 
 </details>
 
@@ -70,29 +74,28 @@ Aqui está a explicação detalhada do código, organizada em seções expansív
 <br>
 
 #### Execução e Validação
-- <b>Linha 38</b>: Define uma função auxiliar que retorna <b>`None`</b> se o array estiver <i>vazio</i>.  
-- <b>Linha 41</b>: Chama <b>`maxmin_select`</b> com índices <b>0</b> e <b>`len(arr) - 1`</b>, obtendo <i>máximo</i>, <i>mínimo</i> e o grafo.
+- <b>Linha 44</b>: Define uma função auxiliar que retorna <b>`None`</b> se o array estiver <i>vazio</i>.  
+- <b>Linha 47</b>: Chama <b>`maxmin_select`</b> com índices <b>0</b> e <b>`len(arr) - 1`</b>, obtendo <i>máximo</i>, <i>mínimo</i> e o grafo.
 
 #### Geração do Diagrama
-- <b>Linhas 43-44</b>: Cria a pasta <b>`assets`</b> se não existir.  
-- <b>Linha 46</b>: Define a <i>posição dos nós</i> com <b>`spring_layout`</b> e <b>`k=50`</b> para espaçamento.  
-- <b>Linha 47</b>: Extrai os <i>rótulos</i> dos nós do grafo.  
-- <b>Linha 48</b>: Desenha o grafo com <b>`nx.draw`</b>, ajustando:  
+- <b>Linha 50</b>: Define a <i>posição dos nós</i> com <b>`spring_layout`</b> e <b>`k=50`</b> para espaçamento.  
+- <b>Linha 51</b>: Extrai os <i>rótulos</i> dos nós do grafo.  
+- <b>Linha 52</b>: Desenha o grafo com <b>`nx.draw`</b>, ajustando:  
   - <i>Tamanho dos nós</i>, <i>cores</i>, <i>fonte</i> e <i>arestas</i>.  
-- <b>Linha 49</b>: Salva o diagrama em <b>`assets/diagrama_maxmin.png`</b>.  
-- <b>Linha 50</b>: Fecha a figura para <i>liberar memória</i>.
+- <b>Linha 53</b>: Salva o diagrama em <b>`diagrama_maxmin.png`</b> na raiz do projeto.  
+- <b>Linha 54</b>: Fecha a figura para <i>liberar memória</i>.
 
 #### Retorno
-- <b>Linha 52</b>: Retorna o <i>máximo</i> e o <i>mínimo</i>.
+- <b>Linha 56</b>: Retorna o <i>máximo</i> e o <i>mínimo</i>.
 
 </details>
 
 <details>
-<summary><b><span style="color:#e67e22">Teste (Linhas 54-59)</span></b></summary>
+<summary><b><span style="color:#e67e22">Teste (Linhas 58-63)</span></b></summary>
 
 <br>
 
-- Define um <i>array de teste</i> com <b>23 elementos</b>.  
+- Define um <i>array de teste</i> com <b>8 elementos</b>: `[258, 2, 67, 52, 1, 102, 305, 48]`.  
 - Chama <b>`find_max_min`</b> para calcular o <i>máximo</i> e o <i>mínimo</i>.  
 - Exibe o <i>array</i>, o <i>máximo</i>, o <i>mínimo</i> e uma mensagem confirmando a geração do diagrama em <b>`/diagrama_maxmin.png`</b>.
 
@@ -161,4 +164,8 @@ Um diagrama ilustrando a recursão está disponível em `/diagrama_maxmin.png`. 
 - Níveis da árvore de recursão e comparações.
 
 ![Diagrama MaxMin Select](diagrama_maxmin.png)
+
+- Outra forma de visualizar 
+
+![diagrama_maxminpuml.png](diagrama_maxminpuml.png)
 ---

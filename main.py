@@ -13,8 +13,11 @@ def maxmin_select(arr, low, high, G=None, parent=None, level=0):
     if parent:
         G.add_edge(parent, node_id)
 
+    print(f"Nível de recursão {level}: processando {arr[low:high + 1]}")
+
     if low == high:
         G.nodes[node_id]['label'] = f"[{arr[low]}]\\nMax={arr[low]}, Min={arr[low]}\\nLevel {level}"
+        print(f"Base case: um elemento {arr[low]}")
         return arr[low], arr[low], G
 
     if high == low + 1:
@@ -23,6 +26,7 @@ def maxmin_select(arr, low, high, G=None, parent=None, level=0):
         else:
             max_val, min_val = arr[high], arr[low]
         G.nodes[node_id]['label'] = f"[{arr[low]}, {arr[high]}]\\nMax={max_val}, Min={min_val}\\n1 comp\\nLevel {level}"
+        print(f"Base case: dois elementos {arr[low]} e {arr[high]}, max={max_val}, min={min_val}")
         return max_val, min_val, G
 
     mid = (low + high) // 2
@@ -33,13 +37,14 @@ def maxmin_select(arr, low, high, G=None, parent=None, level=0):
     final_min = min(min1, min2)
     G.nodes[node_id]['label'] = f"[{', '.join(map(str, arr[low:high + 1]))}]\\nMax={final_max}, Min={final_min}\\n2 comp\\nLevel {level}"
 
+    print(f"Nível de recursão {level}: combinado {arr[low:high + 1]}, max={final_max}, min={final_min}")
+
     return final_max, final_min, G
 
 def find_max_min(arr):
     if not arr:
         return None, None, None
     max_val, min_val, G = maxmin_select(arr, 0, len(arr) - 1)
-
 
     pos = nx.spring_layout(G, k=50)  # Ajusta o espaçamento dos nós
     labels = nx.get_node_attributes(G, 'label')
@@ -50,7 +55,7 @@ def find_max_min(arr):
     return max_val, min_val
 
 if __name__ == "__main__":
-    arr = [1000, 5, 23, 67, 2, 89, 45, 78, 34, 56, 12, 90, 33, 21, 8, 77, 54, 31, 19, 6,57,78, 90]
+    arr = [258, 2, 67, 52, 1, 102, 305,48]
     maximum, minimum = find_max_min(arr)
     print(f"Array: {arr}")
     print(f"Max: {maximum}, Min: {minimum}")
