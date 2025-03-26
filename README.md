@@ -5,9 +5,20 @@
 
 Este projeto implementa o algoritmo **MaxMin Select** em Python, que utiliza a técnica de divisão e conquista para encontrar simultaneamente o maior e o menor elementos de uma sequência de números. O algoritmo reduz o número de comparações em relação a uma abordagem ingênua, dividindo a lista em subproblemas menores e combinando os resultados recursivamente.
 
+## Estrutura do Projeto  
+
+O repositório contém os seguintes arquivos:  
+````
+📂 trabalho_individual_2_FPAA  
+│── 📄 main.py                  # Implementação do algoritmo MaxMin Select  
+│── 📄 diagrama-maxmin.png      # Diagrama gerado pelo código (networkx/matplotlib)  
+│── 📄 diagrama-maxmin.puml     # Código PlantUML do diagrama estático  
+│── 📄 diagrama-maxminpuml.png  # Diagrama estático gerado pelo PlantUML  
+│── 📄 LICENSE                  # Licença do projeto  
+│── 📄 README.md                # Documentação do projeto  
+````
 ### Lógica do Algoritmo (Explicação Linha a Linha)
 
-Aqui está a explicação detalhada do código, organizada em seções expansíveis com formatação aprimorada para melhor estética:
 
 <details>
 <summary><b><span style="color:#2ecc71">Linhas 1-3: Importação das Bibliotecas</span></b></summary>

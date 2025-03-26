@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import networkx as nx
-import os
+
 
 def maxmin_select(arr, low, high, G=None, parent=None, level=0):
     if G is None:
